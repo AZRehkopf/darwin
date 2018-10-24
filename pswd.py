@@ -2,25 +2,39 @@ from operator import itemgetter
 import string, random, json, os, time
 
 class PasswordEvolution():	
-	def __init__(self):
-		self.GOAL = 'buzzword'
+	def __init__(self, config_file):
+		self.load_config(config_file)
+
+		# Dependant Experiment Variables
 		self.WORD_LENGTH = len(self.GOAL)
-		self.POP_SIZE = 100
-		self.MUTATIONS = 1
-		self.NUM_OF_BREEDERS = 10
 		self.MUTATIONS_PER_BREEDER = int(self.POP_SIZE / self.NUM_OF_BREEDERS)
-		self.FIT_BREEDERS = 8
 		self.RANDOM_BREEDERS = self.NUM_OF_BREEDERS - self.FIT_BREEDERS
+		
+		# System Environment Variables
 		self.START_TIME = time.time()
-		
 		self.LOG_FILE = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'log.json')
-		self.LOG_ALL_GENERATIONS = True
 		
+		# Class Variables
 		self.log_data = []
 		self.population = self.generate_population()
 		self.fitness = self.check_population_fitness()
 		self.generation = 1
 		self.complete = False
+
+	def load_config(self, config_file):
+		config_data = None
+		with open(config_file) as config:
+			config_data = json.load(config)
+
+		# Independant Experiment Variables
+		self.GOAL = config_data['variables']['goal']
+		self.POP_SIZE = config_data['variables']['population_size']
+		self.MUTATIONS = config_data['variables']['mutations']
+		self.NUM_OF_BREEDERS = config_data['variables']['num_of_breeders']
+		self.FIT_BREEDERS = config_data['variables']['fit_breeders']
+
+		# Settings
+		self.LOG_ALL_GENERATIONS = config_data['settings']['log_all_generations']
 
 	def generate_population(self):
 		population = []
@@ -76,8 +90,9 @@ class PasswordEvolution():
 		for individual in parents:
 			for child in range(self.MUTATIONS_PER_BREEDER):
 				temp_list = list(individual)
-				idx = random.randint(0,self.WORD_LENGTH - 1)
-				temp_list[idx] = random.choice(string.ascii_lowercase)
+				for mut in range(self.MUTATIONS):
+					idx = random.randint(0,self.WORD_LENGTH - 1)
+					temp_list[idx] = random.choice(string.ascii_lowercase)
 
 				children.append("".join(temp_list))
 
@@ -116,5 +131,5 @@ class PasswordEvolution():
 		return data
 
 if __name__ == '__main__':
-	experiment = PasswordEvolution()
+	experiment = PasswordEvolution('config.json')
 	print(experiment.evolve())

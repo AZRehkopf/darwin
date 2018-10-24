@@ -1,0 +1,12 @@
+{
+	"variables": {
+		"goal": "pneumonoultramicroscopicsilicovolcanoconiosis",
+		"population_size": 10000,
+		"mutations": 1,
+		"num_of_breeders": 1000,
+		"fit_breeders": 990
+	},
+	"settings": {
+		"log_all_generations": true
+	}
+}
