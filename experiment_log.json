@@ -1,0 +1,142 @@
+[
+    {
+        "measurements": {
+            "avg_generations": 50,
+            "avg_execution_time": 0.026982672214508056
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 100,
+            "mutations": 1,
+            "num_of_breeders": 10,
+            "fit_breeders": 8
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 37,
+            "avg_execution_time": 0.04061894416809082
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 200,
+            "mutations": 1,
+            "num_of_breeders": 20,
+            "fit_breeders": 16
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 34,
+            "avg_execution_time": 0.05599762201309204
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 300,
+            "mutations": 1,
+            "num_of_breeders": 30,
+            "fit_breeders": 24
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 30,
+            "avg_execution_time": 0.06708601236343384
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 400,
+            "mutations": 1,
+            "num_of_breeders": 40,
+            "fit_breeders": 32
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 30,
+            "avg_execution_time": 0.08113468408584595
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 500,
+            "mutations": 1,
+            "num_of_breeders": 50,
+            "fit_breeders": 40
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 29,
+            "avg_execution_time": 0.09576430320739746
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 600,
+            "mutations": 1,
+            "num_of_breeders": 60,
+            "fit_breeders": 48
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 28,
+            "avg_execution_time": 0.10822741985321045
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 700,
+            "mutations": 1,
+            "num_of_breeders": 70,
+            "fit_breeders": 56
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 28,
+            "avg_execution_time": 0.12587236642837524
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 800,
+            "mutations": 1,
+            "num_of_breeders": 80,
+            "fit_breeders": 64
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 28,
+            "avg_execution_time": 0.13924030780792238
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 900,
+            "mutations": 1,
+            "num_of_breeders": 90,
+            "fit_breeders": 72
+        }
+    },
+    {
+        "measurements": {
+            "avg_generations": 27,
+            "avg_execution_time": 0.1473469614982605
+        },
+        "test_params": {
+            "iterations": 100,
+            "word_length": 16,
+            "population_size": 1000,
+            "mutations": 1,
+            "num_of_breeders": 100,
+            "fit_breeders": 80
+        }
+    }
+]

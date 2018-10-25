@@ -1,9 +1,13 @@
 from operator import itemgetter
+from numpy import linspace
 import string, random, json, os, time
 
 class PasswordEvolution():	
-	def __init__(self, config_file):
-		self.load_config(config_file)
+	def __init__(self, **kwargs):
+		if 'file_name' in kwargs:
+			self.load_config(kwargs['file_name'])
+		elif 'json' in kwargs:
+			self.load_json_config(kwargs['json'])
 
 		# Dependant Experiment Variables
 		self.WORD_LENGTH = len(self.GOAL)
@@ -21,7 +25,7 @@ class PasswordEvolution():
 		self.generation = 1
 		self.complete = False
 
-	def load_config(self, config_file):
+	def load_file_config(self, config_file):
 		config_data = None
 		with open(config_file) as config:
 			config_data = json.load(config)
@@ -35,6 +39,16 @@ class PasswordEvolution():
 
 		# Settings
 		self.LOG_ALL_GENERATIONS = config_data['settings']['log_all_generations']
+
+	def load_json_config(self, json_data):
+		self.GOAL = json_data['goal']
+		self.POP_SIZE = json_data['population_size']
+		self.MUTATIONS = json_data['mutations']
+		self.NUM_OF_BREEDERS = json_data['num_of_breeders']
+		self.FIT_BREEDERS = json_data['fit_breeders']
+
+		# Settings
+		self.LOG_ALL_GENERATIONS = False
 
 	def generate_population(self):
 		population = []
@@ -130,6 +144,90 @@ class PasswordEvolution():
 		data = {'generations': self.generation, 'execution_time': time.time() - self.START_TIME}
 		return data
 
+class ExperimentBatch():
+	def __init__(self):
+		self.iterations = 100
+		self.LOG_FILE = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'experiment_log.json')
+
+		# Config Vars
+		self.LENGTH = 16
+		self.pop_size = 100
+		self.mutations = 1
+		self.survival_rate = 0.1
+		self.fittest_selection_rate = 0.8
+
+		# Results
+		self.results = []
+		self.log_values = []
+		
+	def run_experiment(self, config):
+		experiment = PasswordEvolution(json=config)
+		results = experiment.evolve()
+		return results
+
+	def generate_goal_word(self):
+		goal_word = ""
+		for num in range(self.LENGTH):
+			goal_word = goal_word + random.choice(string.ascii_lowercase)
+
+		return goal_word
+
+	def generate_config(self):
+		return {"goal": self.generate_goal_word(), "population_size": self.pop_size, "mutations": self.mutations, "num_of_breeders": int(self.survival_rate * self.pop_size), "fit_breeders": int(self.survival_rate * self.pop_size * self.fittest_selection_rate)}
+
+	def run_experiment_batch(self):
+		for i in range(self.iterations):
+			result = self.run_experiment(self.generate_config())
+			self.results.append(result)
+
+		return self.analyze_results()
+
+	def analyze_results(self):
+		generations_total = 0
+		execution_total = 0
+		for result in self.results:
+			generations_total += result['generations']
+			execution_total += result['execution_time']
+
+		return {'measurements':{'avg_generations': int(generations_total/self.iterations), 'avg_execution_time': execution_total/self.iterations}, 'test_params': {'iterations': self.iterations, 'word_length':self.LENGTH, 'population_size': self.pop_size, 'mutations': self.mutations, 'num_of_breeders': int(self.survival_rate * self.pop_size), 'fit_breeders': int(self.survival_rate * self.pop_size * self.fittest_selection_rate)}}
+
+	def vary_pop_size(self, init, delta, final):
+		for value in range(init, final, delta):
+			self.pop_size = value
+			result = batch.run_experiment_batch()
+			self.log_result(result)
+		self.pop_size = final
+		result = batch.run_experiment_batch()
+		self.log_result(result)
+
+	def vary_mutations(self, init, delta, final):
+		for value in range(init, final, delta):
+			self.mutations = value
+			result = batch.run_experiment_batch()
+			self.log_result(result)
+		self.mutations = final
+		result = batch.run_experiment_batch()
+		self.log_result(result)
+
+	def vary_survival_rate(self, init, final, segmentations):
+		for value in linspace(init,final,segmentations):
+			self.survival_rate = value
+			result = batch.run_experiment_batch()
+			self.log_result(result)
+
+	def vary_fittest_selection_rate(self, init, final, segmentations):
+		for value in linspace(init,final,segmentations):
+			self.fittest_selection_rate = value
+			result = batch.run_experiment_batch()
+			self.log_result(result)
+
+	def log_result(self, result):
+		self.log_values.append(result)
+		with open(self.LOG_FILE, mode='w', encoding='utf-8') as log:
+			json.dump(self.log_values, log, indent=4)
+		
+		self.results = []
+	
 if __name__ == '__main__':
-	experiment = PasswordEvolution('config.json')
-	print(experiment.evolve())
+	batch = ExperimentBatch()
+	batch.vary_pop_size(100, 100, 1000)
