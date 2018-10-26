@@ -1,6 +1,13 @@
+# Base Python Imports
+import string 
+import random 
+import json
+import os 
+import time
 from operator import itemgetter
+
+# Third Party Imports 
 from numpy import linspace
-import string, random, json, os, time
 
 class WordEvolution():	
 	def __init__(self, **kwargs):
