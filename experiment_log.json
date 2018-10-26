@@ -1,8 +1,8 @@
 [
     {
         "measurements": {
-            "avg_generations": 50,
-            "avg_execution_time": 0.026982672214508056
+            "avg_generations": 52,
+            "avg_execution_time": 0.04524327754974365
         },
         "test_params": {
             "iterations": 100,
@@ -16,7 +16,7 @@
     {
         "measurements": {
             "avg_generations": 37,
-            "avg_execution_time": 0.04061894416809082
+            "avg_execution_time": 0.06500477313995362
         },
         "test_params": {
             "iterations": 100,
@@ -30,7 +30,7 @@
     {
         "measurements": {
             "avg_generations": 34,
-            "avg_execution_time": 0.05599762201309204
+            "avg_execution_time": 0.09099060773849488
         },
         "test_params": {
             "iterations": 100,
@@ -43,8 +43,8 @@
     },
     {
         "measurements": {
-            "avg_generations": 30,
-            "avg_execution_time": 0.06708601236343384
+            "avg_generations": 31,
+            "avg_execution_time": 0.11093510866165161
         },
         "test_params": {
             "iterations": 100,
@@ -58,7 +58,7 @@
     {
         "measurements": {
             "avg_generations": 30,
-            "avg_execution_time": 0.08113468408584595
+            "avg_execution_time": 0.13045950174331666
         },
         "test_params": {
             "iterations": 100,
@@ -72,7 +72,7 @@
     {
         "measurements": {
             "avg_generations": 29,
-            "avg_execution_time": 0.09576430320739746
+            "avg_execution_time": 0.15449491024017334
         },
         "test_params": {
             "iterations": 100,
@@ -85,8 +85,8 @@
     },
     {
         "measurements": {
-            "avg_generations": 28,
-            "avg_execution_time": 0.10822741985321045
+            "avg_generations": 29,
+            "avg_execution_time": 0.18075366020202638
         },
         "test_params": {
             "iterations": 100,
@@ -100,7 +100,7 @@
     {
         "measurements": {
             "avg_generations": 28,
-            "avg_execution_time": 0.12587236642837524
+            "avg_execution_time": 0.2008936047554016
         },
         "test_params": {
             "iterations": 100,
@@ -113,8 +113,8 @@
     },
     {
         "measurements": {
-            "avg_generations": 28,
-            "avg_execution_time": 0.13924030780792238
+            "avg_generations": 27,
+            "avg_execution_time": 0.21463833332061769
         },
         "test_params": {
             "iterations": 100,
@@ -128,7 +128,7 @@
     {
         "measurements": {
             "avg_generations": 27,
-            "avg_execution_time": 0.1473469614982605
+            "avg_execution_time": 0.24881627321243285
         },
         "test_params": {
             "iterations": 100,

@@ -2,7 +2,7 @@ from operator import itemgetter
 from numpy import linspace
 import string, random, json, os, time
 
-class PasswordEvolution():	
+class WordEvolution():	
 	def __init__(self, **kwargs):
 		if 'file_name' in kwargs:
 			self.load_config(kwargs['file_name'])
@@ -144,7 +144,7 @@ class PasswordEvolution():
 		data = {'generations': self.generation, 'execution_time': time.time() - self.START_TIME}
 		return data
 
-class ExperimentBatch():
+class EvolutionBatch():
 	def __init__(self):
 		self.iterations = 100
 		self.LOG_FILE = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'experiment_log.json')
@@ -161,7 +161,7 @@ class ExperimentBatch():
 		self.log_values = []
 		
 	def run_experiment(self, config):
-		experiment = PasswordEvolution(json=config)
+		experiment = WordEvolution(json=config)
 		results = experiment.evolve()
 		return results
 
@@ -229,5 +229,5 @@ class ExperimentBatch():
 		self.results = []
 	
 if __name__ == '__main__':
-	batch = ExperimentBatch()
+	batch = EvolutionBatch()
 	batch.vary_pop_size(100, 100, 1000)
