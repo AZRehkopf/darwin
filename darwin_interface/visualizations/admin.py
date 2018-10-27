@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Graph, DataPoint
+
+admin.site.register(Graph)
+admin.site.register(DataPoint)

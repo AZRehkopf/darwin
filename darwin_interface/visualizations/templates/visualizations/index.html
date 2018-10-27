@@ -1,0 +1,26 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Darwin Visualizations</title>
+  
+  {#<meta name="description" content="">#}
+  {#<meta name="author" content="">#}
+
+  {#<link rel="stylesheet" href="css/styles.css?v=1.0">#}
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:500" rel="stylesheet">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'visualizations/style.css' %}">
+
+</head>
+
+{% if graph_list %}
+    <ul>
+    {% for graph in graph_list %}
+        <li>{{ graph.graph_title }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No graphs found.</p>
+{% endif %}
