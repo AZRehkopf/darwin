@@ -1,3 +1,8 @@
 body {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Montserrat', sans-serif !important;
+}
+
+#content {
+	padding-top: 2rem;
+	/*padding-left: 15rem;*/
 }

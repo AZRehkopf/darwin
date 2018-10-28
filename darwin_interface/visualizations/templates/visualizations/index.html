@@ -3,24 +3,57 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Darwin Visualizations</title>
-  
-  {#<meta name="description" content="">#}
-  {#<meta name="author" content="">#}
+  <title>Darwin</title>
 
-  {#<link rel="stylesheet" href="css/styles.css?v=1.0">#}
   <link href="https://fonts.googleapis.com/css?family=Montserrat:500" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script type="text/javascript"> 
+   var data = {{ data|safe }};
+	</script>
+ 
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'visualizations/style.css' %}">
-
+	<link rel="stylesheet" type="text/css" href="{% static 'visualizations/semantic.min.css' %}">
+	<script href="{% static 'visualizations/semantic.min.js' %}"></script>
+	<script src="{% static 'visualizations/charts.js' %}"></script>
+	
 </head>
 
-{% if graph_list %}
-    <ul>
-    {% for graph in graph_list %}
-        <li>{{ graph.graph_title }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No graphs found.</p>
-{% endif %}
+<div class="ui left fixed vertical menu">
+  <div class="item">
+  	{% load static %}
+    <img class="ui massive image" src="{% static "/visualizations/logo.svg" %}">
+  </div>
+  <a class="item">Graphs</a>
+  <a class="item">Run Test</a>
+  <a class="item">Import Data</a>
+</div>
+
+<div id="content" class="ui container">
+	<div class="ui three column doubling grid container">
+		<div class="column">
+			<h3 class="ui center aligned header">Population Variation</h3>
+		</div>
+		<div class="column">
+		</div>
+		<div class="column">
+		</div>
+		<div class="column">
+			<canvas id="chart1" width="400" height="400"></canvas>	
+		</div>
+		<div class="column">
+		</div>
+		<div class="column">
+		</div>
+		<div class="column">
+			<canvas id="chart2" width="400" height="400"></canvas>
+		</div>
+		<div class="column">
+		</div>
+		<div class="column">
+		</div>
+
+	</div>
+</div>
